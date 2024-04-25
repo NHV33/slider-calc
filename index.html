@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+
+  <body>
+    <template id="slider-template">
+
+      <div class="col a-center j-center nowrap">
+
+        <div class="nowrap j-between">
+
+          <div class="col a-center j-center nowrap">
+            <button class="slider-button-prev">move up</button>
+            <button class="slider-button-next">move down</button>
+          </div>
+
+          <div class="col a-center">
+
+            <span class="input-label">Description</span>
+            <input type="text" class="value-name w-100">
+
+            <div class="row j-between w-100">
+
+              <div class="col j-between">
+                <span class="input-label">Lower Bound</span>
+                <input type="text" class="slider-value value-lower">
+              </div>
+
+              <div class="col j-between">
+                <span class="input-label">Default Value</span>
+                <input type="text" class="slider-value value-default">
+              </div>
+
+              <div class="col j-between">
+                <span class="input-label">Upper Bound</span>
+                <input type="text" class="slider-value value-upper">
+              </div>
+
+              <div class="col j-between">
+                <span class="input-label">Increment</span>
+                <!-- display-step class added to avoid queryselector being null -->
+                <input type="text" class="slider-value value-step display-step">
+              </div>
+
+              <div class="col j-between">
+                <span class="input-label">Operation</span>
+
+                <select name="slider-operations" class="slider-operations">
+                  <option value="add">+</option>
+                  <option value="sub">-</option>
+                  <option value="mul">x</option>
+                  <option value="div">/</option>
+                </select>
+
+              </div>
+
+            </div>
+
+            <div class="display-name w-100"></div>
+
+            <div class="row j-between w-100">
+
+              <span class="slider-display display-lower"></span>
+              <span class="slider-display display-default"></span>
+              <span class="slider-display display-upper"></span>
+
+            </div>
+
+            <input type="range" class="slider-slider w-100">
+
+          </div>
+
+          <div class="col a-center j-center nowrap">
+            <button class="slider-button-delete">delete</button>
+          </div>
+
+        </div>
+
+        <div>
+          <button class="slider-button-add">Add a Slider</button>
+        </div>
+
+      </div>
+
+    </template>
+
+    <div class="container col j-center nowrap">
+
+      <button id="add-slider-button" style="height: 40px;">
+        Add a slider
+      </button>
+
+      <div id="slider-box" class="col a-center">
+
+      </div>
+
+    </div>
+
+    <script src="script.js" async defer></script>
+  </body>
+</html>

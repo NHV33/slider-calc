@@ -1,0 +1,14 @@
+.container {
+  width: 100%;
+  margin: auto;
+}
+
+.nowrap { flex-wrap: nowrap; }
+.row { display: flex; }
+.col { display: flex; flex-direction: column; }
+.j-center { display: flex; justify-content: center; }
+.j-around { display: flex; justify-content: space-around; }
+.j-evenly { display: flex; justify-content: space-evenly; }
+.j-between { display: flex; justify-content: space-between; }
+.a-center { display: flex; align-items: center; }
+.w-100 { width: 100%; }
