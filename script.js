@@ -29,6 +29,16 @@ const addSliderButton = document.getElementById("add-slider-button");
 const sliderBox = document.getElementById("slider-box");
 const sliderTemplate = document.getElementById("slider-template");
 
+/* Constants*/
+
+const mathOperations = {
+  add: { name: "add", symbol: "+", calc: (n1, n2) => {return n1 + n2; } },
+  sub: { name: "sub", symbol: "-", calc: (n1, n2) => {return n1 - n2; } },
+  mul: { name: "mul", symbol: "x", calc: (n1, n2) => {return n1 * n2; } },
+  div: { name: "div", symbol: "÷", calc: (n1, n2) => {return n1 / n2; } },
+};
+
+
 // Append a new slider
 function addNewSlider(insertionIndex=null) {
 
@@ -89,10 +99,11 @@ function addNewSlider(insertionIndex=null) {
   // Update display value when slider is slid
   sliderSlider.addEventListener("input", () => {
     sliderDisplay.textContent = sliderSlider.value;
+    updateCalculation();
   });
 
 
-  // Define button events
+  // Define button events //
 
   const sliderAdd = newSlider.querySelector(".slider-button-add");
   const sliderDelete = newSlider.querySelector(".slider-button-delete");
@@ -104,8 +115,44 @@ function addNewSlider(insertionIndex=null) {
   sliderShiftPrev.addEventListener("mouseup", () => { shiftElementOrder(newSlider, "previous"); });
   sliderShiftNext.addEventListener("mouseup", () => { shiftElementOrder(newSlider, "next"); });
 
+  // Intantiate Math Operations List //
+
+  const sliderOperations = newSlider.querySelector(".slider-operations");
+  Object.keys(mathOperations).forEach(key => {
+    const newOption = newElement("option", "math-operation");
+    sliderOperations.append(newOption);
+
+    const operation = mathOperations[key];
+    newOption.value = operation.name;
+    newOption.textContent = operation.symbol;
+  });
+
+  updateCalculation();
+
 }
 
 addSliderButton.addEventListener("click", () => {
   addNewSlider();
 });
+
+function updateCalculation() {
+  const sliderList = document.querySelectorAll(".slider-instance");
+
+  let number;
+
+  for (let i = 0; i < sliderList.length; i++) {
+    const sliderInstance = sliderList[i];
+
+    const sliderValue = parseFloat(sliderInstance.querySelector(".slider-slider").value);
+    const operation = sliderInstance.querySelector(".slider-operations").value;
+
+    if (i === 0) {
+      number = sliderValue;
+    } else {
+      number = mathOperations[operation].calc(number, sliderValue);
+    }
+  }
+
+  const calculationResultDisplay = document.getElementById("calculation-result");
+  calculationResultDisplay.textContent = number;
+}
